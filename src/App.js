@@ -17,8 +17,8 @@ function App() {
 
       <NameContext.Provider value={{ firstName, lastName }}>
         <Switch>
-          <Route path="/">
-            <Home firstName={firstName} setFirstName={setFirstName} />
+          <Route exact path="/">
+            <Home setFirstName={setFirstName} setLastName={setLastName} />
           </Route>
 
           <Route path="/about">
