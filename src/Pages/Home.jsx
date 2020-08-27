@@ -1,28 +1,39 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useContext } from "react";
 import { NameContext } from "../Contexts/NameContext";
 
-
 export default function Home() {
-  const inputFirstName = useRef();
-  const inputLastName = useRef();
-  let [firstName, setFirstName] = useState("");
-  let [lastName, setLastName] = useState("");
+  // const inputFirstName = useRef();
+  // const inputLastName = useRef();
 
-  const handleOnClick = () => {
-    setFirstName(inputFirstName.current.value);
-    setLastName(inputLastName.current.value);
-  };
+  // const handleOnClick = () => {
+  //   setFirstName(inputFirstName.current.value);
+  //   setLastName(inputLastName.current.value);
+  // };
+
+  const { firstName, setFirstName, lastName, setLastName } = useContext(
+    NameContext
+  );
 
   return (
     <div>
-
-
-        <h1>HOME</h1>
-        <input ref={inputFirstName} type="text" placeholder="Ange Förnamn" />
-        <input ref={inputLastName} type="text" placeholder="Ange Efternamn" />
-        <button onClick={handleOnClick}>Send</button>
-
+      <h1>Home Page</h1>
+      <input
+        onChange={(event) => setFirstName(event.target.value)}
+        placeholder="Ange Förnamn"
+      />
+      <input
+        onChange={(event) => setLastName(event.target.value)}
+        placeholder="Ange Förnamn"
+      />
+      <p>
+        {" "}
+        Förnamn: <b>{firstName}</b>
+      </p>
+      <p>
+        {" "}
+        Efternamn: <b>{lastName}</b>
+      </p>
     </div>
   );
 }

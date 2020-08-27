@@ -2,31 +2,36 @@ import React from "react";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { NameContext } from "./Contexts/NameContext";
-import { Link } from "react-router-dom";
 
 function App() {
   let [firstName, setFirstName] = useState("");
   let [lastName, setLastName] = useState("");
   return (
-    <Router>
-      <nav>
-        <Link to="/about">ABOUT</Link>
-      </nav>
+    <div>
+      <Router>
+        <li>
+          <Link to="/about">ABOUT</Link>
+        </li>
+        <li>
+          <Link to="/">HOME</Link>
+        </li>
 
-      <NameContext.Provider value={{ firstName, lastName }}>
-        <Switch>
-          <Route path="/">
-            <Home firstName={firstName} setFirstName={setFirstName} />
-          </Route>
-
-          <Route path="/about">
-            <About firstName={firstName} lastName={lastName} />
-          </Route>
-        </Switch>
-      </NameContext.Provider>
-    </Router>
+        <NameContext.Provider
+          value={{ firstName, setFirstName, lastName, setLastName }}
+        >
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </NameContext.Provider>
+      </Router>
+    </div>
   );
 }
 
