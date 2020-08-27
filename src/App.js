@@ -18,6 +18,7 @@ function App() {
           <Link to="/">HOME</Link>
         </li>
 
+<<<<<<< HEAD
         <NameContext.Provider
           value={{ firstName, setFirstName, lastName, setLastName }}
         >
@@ -32,6 +33,20 @@ function App() {
         </NameContext.Provider>
       </Router>
     </div>
+=======
+      <NameContext.Provider value={{ firstName, lastName }}>
+        <Switch>
+          <Route exact path="/">
+            <Home setFirstName={setFirstName} setLastName={setLastName} />
+          </Route>
+
+          <Route path="/about">
+            <About firstName={firstName} lastName={lastName} />
+          </Route>
+        </Switch>
+      </NameContext.Provider>
+    </Router>
+>>>>>>> b2626ce173e496e79d89b597e425e56e894146a6
   );
 }
 
